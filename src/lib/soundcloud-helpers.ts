@@ -51,10 +51,11 @@ export async function importFromSoundcloud(url: string) {
 export async function downloadFromSoundcloud(url: string) {
   const soundcloud = new Soundcloud();
   const tempId = Math.random().toString(36).substring(2, 10);
+  const track = await soundcloud.tracks.getAlt(url);
 
   try {
     let filePath = `temp/tracks/${tempId}`;
-    filePath = await soundcloud.util.downloadTrack(url, filePath);
+    filePath = await soundcloud.util.downloadTrack(track, filePath);
 
     // Read the downloaded audio file as a buffer
     const file = fs.readFileSync(filePath);
