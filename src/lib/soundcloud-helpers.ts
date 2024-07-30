@@ -65,7 +65,6 @@ export async function downloadFromSoundcloud(url: string) {
     filePath = path.dirname(filePath);
     fs.rm(filePath, { recursive: true, force: true }, (err) => {
       if (err) throw err;
-      console.log(filePath + ' was deleted');
     });
 
     return new File([file], 'audio.mp3');
