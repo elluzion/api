@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import path from 'node:path';
 import { Soundcloud } from 'soundcloud.ts';
 import type { Song } from '../types/song';
 import { parseQuery } from './utils/string-utils';
@@ -61,7 +62,8 @@ export async function downloadFromSoundcloud(url: string) {
     const file = fs.readFileSync(filePath);
 
     // Delete the temporary file
-    fs.unlink(filePath, (err) => {
+    filePath = path.dirname(filePath);
+    fs.rm(filePath, { recursive: true, force: true }, (err) => {
       if (err) throw err;
       console.log(filePath + ' was deleted');
     });
