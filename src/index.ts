@@ -2,7 +2,9 @@ import { swagger } from '@elysiajs/swagger';
 import { Elysia } from 'elysia';
 import { SoundcloudController } from './controllers/soundcloud-controller';
 
-const api = new Elysia({ prefix: '/api' }).use(SoundcloudController).use(
+const PORT = process.env.PORT || 3000;
+
+const api = new Elysia().use(SoundcloudController).use(
   swagger({
     version: '1.0.0',
     path: '/docs',
@@ -18,6 +20,10 @@ const api = new Elysia({ prefix: '/api' }).use(SoundcloudController).use(
     },
   }),
 );
+
+api.listen(PORT);
+
+console.log(`Listening on port ${PORT}`);
 
 export type Api = typeof api;
 export default api;
