@@ -1,4 +1,5 @@
-import { swagger } from '@elysiajs/swagger';
+import { cors } from '@elysiajs/cors';
+import swagger from '@elysiajs/swagger';
 import { Elysia } from 'elysia';
 import fs from "node:fs";
 import { SoundcloudController } from './controllers/soundcloud-controller';
@@ -9,6 +10,7 @@ const tlsCert = process.env.TLS_CERT_PATH;
 
 const api = new Elysia()
   .use(SoundcloudController)
+  .use(cors())
   .use(
     swagger({
       version: '1.0.0',
