@@ -16,6 +16,10 @@ export async function importFromSoundcloud(url: string) {
     const soundcloud = new Soundcloud();
     const track = await soundcloud.tracks.getAlt(url);
 
+    if (!track || !(track instanceof Object)) {
+      return undefined;
+    }
+
     const { title, artists, type } = parseQuery(track.title);
     const releaseDate = new Date(track.release_date || track.display_date);
     const labelName = track.label_name || track.user.username;
