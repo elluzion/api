@@ -3,10 +3,12 @@ import swagger from '@elysiajs/swagger';
 import { Elysia } from 'elysia';
 import fs from "node:fs";
 import { SoundcloudController } from './controllers/soundcloud-controller';
+import Environment from './lib/environment';
 
-const PORT = process.env.PORT || 3000;
-const tlsKey = process.env.TLS_KEY_PATH;
-const tlsCert = process.env.TLS_CERT_PATH;
+// Validate environment variables
+Environment.validate();
+
+const { PORT, TLS_KEY, TLS_CERT } = Environment;
 
 const api = new Elysia()
   .use(SoundcloudController)
@@ -30,8 +32,8 @@ const api = new Elysia()
   .listen({
     port: PORT,
     tls: {
-      key: tlsKey ? fs.readFileSync(tlsKey) : undefined,
-      cert: tlsCert ? fs.readFileSync(tlsCert) : undefined,
+      key: TLS_KEY ? fs.readFileSync(TLS_KEY) : undefined,
+      cert: TLS_CERT ? fs.readFileSync(TLS_CERT) : undefined,
     },
   });
 
