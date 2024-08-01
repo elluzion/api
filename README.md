@@ -1,9 +1,16 @@
 # Elysia with Bun runtime
 
-## Getting Started
-To get started with this template, simply paste this command into your terminal:
+## Start
+Add the following entries to your .env file:
+```
+PORT=<required>
+TLS_KEY_PATH=<optional>
+TLS_CERT_PATH=<optional>
+```
+
+Then run using the command:
 ```bash
-bun create elysia ./elysia-example
+bun run api
 ```
 
 ## Development
