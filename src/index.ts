@@ -1,6 +1,7 @@
 import { cors } from '@elysiajs/cors';
 import swagger from '@elysiajs/swagger';
 import { Elysia } from 'elysia';
+import { IndexController } from './controllers/index-controller';
 import { SoundcloudController } from './controllers/soundcloud-controller';
 import Environment from './lib/environment';
 
@@ -8,6 +9,7 @@ const { PORT } = Environment;
 
 const api = new Elysia()
   .use(SoundcloudController)
+  .use(IndexController)
   .use(cors())
   .use(
     swagger({
