@@ -11,12 +11,12 @@ const api = new Elysia()
   .use(cors())
   .use(
     swagger({
-      version: '1.0.0',
+      version: await Environment.VERSION(),
       path: '/docs',
       documentation: {
         info: {
           title: 'Tools API',
-          version: '1.0.0',
+          version: await Environment.VERSION(),
         },
       },
       theme: 'dark',

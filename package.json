@@ -1,6 +1,6 @@
 {
   "name": "api",
-  "version": "1.0.50",
+  "version": "1.0.0",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "bun run --watch src/index.ts",
@@ -8,7 +8,7 @@
     "dc:build": "docker compose build",
     "dc:up": "docker compose up -d --remove-orphans",
     "dc:down": "docker compose down",
-    "dc:rm": "docker compose rm", 
+    "dc:rm": "docker compose rm",
     "dc:update": "git pull && docker compose build && docker compose up -d --remove-orphans"
   },
   "dependencies": {
