@@ -1,11 +1,9 @@
 # Elysia with Bun runtime
 
 ## Start
-Add the following entries to your .env file:
+Add/overwrite the following entries to your .env file:
 ```
-PORT=<required>
-TLS_KEY_PATH=<optional>
-TLS_CERT_PATH=<optional>
+PORT=<default:3000>
 ```
 
 Then run using the command:
