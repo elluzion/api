@@ -4,7 +4,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "bun run --watch src/index.ts",
-    "api": "bun run src/index.ts"
+    "api": "bun run src/index.ts",
+    "dc:build": "docker compose build",
+    "dc:up": "docker compose up -d --remove-orphans",
+    "dc:down": "docker compose down",
+    "dc:rm": "docker compose rm", 
+    "dc:update": "git pull && docker compose build && docker compose up -d --remove-orphans"
   },
   "dependencies": {
     "@elysiajs/cors": "^1.1.0",
