@@ -83,17 +83,3 @@ function cleanWhitespace(input: string, filler?: string) {
 function pascalCase(input: string) {
   return input[0].toUpperCase() + input.slice(1).toLowerCase();
 }
-
-/**
- * Replaces the size parameter in a Soundcloud artwork URL with the specified target size.
- *
- * @param {string} url - The Soundcloud artwork URL.
- * @param {'large' | 'original' | 't500x500'} [targetSize='t500x500'] - The target size for the artwork. Defaults to 't500x500'.
- * @return {string} - The modified Soundcloud artwork URL with the target size.
- */
-export function improveSoundcloudArtwork(url: string, targetSize: 'large' | 'original' | 't500x500' = 't500x500') {
-  if (url.includes('sndcdn.com/artworks-')) {
-    return url.replace(/([tl]\d+x\d+|(?:large|original))(?=\.\w+$)/, targetSize);
-  }
-  return url;
-}

@@ -1,5 +1,5 @@
 import Elysia, { error, t } from 'elysia';
-import { downloadFromSoundcloud, importFromSoundcloud } from '../lib/soundcloud-helpers';
+import { downloadFromSoundcloud, importFromSoundcloud, SoundcloudUtils } from '../lib/soundcloud-helpers';
 import { Song } from '../types/song';
 
 export const SoundcloudController = (app: Elysia) =>
@@ -8,8 +8,8 @@ export const SoundcloudController = (app: Elysia) =>
       .get(
         '/import',
         async ({ query: { url } }) => {
-          const validateError = isValidSoundcloudUrl(url);
-          if (validateError) return validateError;
+          const isValid = (await SoundcloudUtils.validateSoundcloudUrl(url)) ? true : false;
+          if (!isValid) return error(400, 'Invalid URL');
 
           const data = await importFromSoundcloud(url);
           return data || error(404, 'Song not found');
@@ -28,8 +28,8 @@ export const SoundcloudController = (app: Elysia) =>
       .get(
         '/download',
         async ({ query: { url } }) => {
-          const validateError = isValidSoundcloudUrl(url);
-          if (validateError) return validateError;
+          const isValid = (await SoundcloudUtils.validateSoundcloudUrl(url)) ? true : false;
+          if (!isValid) return error(400, 'Invalid URL');
 
           /// TODO: VERCEL ERROR - CANNOT STORE FILES IN VERCEL
           const file = await downloadFromSoundcloud(url);
@@ -49,18 +49,3 @@ export const SoundcloudController = (app: Elysia) =>
         },
       ),
   );
-
-function isValidSoundcloudUrl(url?: string) {
-  let _error = undefined;
-
-  if (!url || !(typeof url === 'string')) {
-    _error = error(400, 'No URL provided');
-  }
-
-  // Validate URL
-  if (!url!.startsWith('https://soundcloud.com') && !url!.startsWith('https://on.soundcloud.com')) {
-    _error = error(404, `"${url}" is not a soundcloud URL.`);
-  }
-
-  return _error;
-}
