@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { Soundcloud } from 'soundcloud.ts';
 import type { Song } from '../types/song';
-import { parseQuery } from './utils/string-utils';
+import { improveSoundcloudArtwork, parseQuery } from './utils/string-utils';
 
 /**
  * Imports a song from Soundcloud based on the provided URL.
@@ -35,7 +35,7 @@ export async function importFromSoundcloud(url: string) {
       permalink: track.permalink,
       releaseDate: releaseDate,
       label: labelName,
-      artUrl: track.artwork_url || track.user.avatar_url,
+      artUrl: improveSoundcloudArtwork(track.artwork_url) || track.user.avatar_url,
       genre: track.genre,
       type: type,
     };
