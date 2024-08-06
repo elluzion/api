@@ -7,7 +7,7 @@ import Environment from './lib/environment';
 
 const { PORT } = Environment;
 
-const api = new Elysia()
+export const api = new Elysia()
   .use(SoundcloudController)
   .use(IndexController)
   .use(cors())
