@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { Soundcloud } from 'soundcloud.ts';
 import type { Song } from '../types/song';
-import { parseQuery } from './utils/string-utils';
+import { parseSongQuery } from './song-helper';
 
 /**
  * Imports a song from Soundcloud based on the provided URL.
@@ -25,7 +25,7 @@ export async function importFromSoundcloud(url: string) {
       return undefined;
     }
 
-    const { title, artists, type } = parseQuery(track.title);
+    const { title, artists, type } = parseSongQuery(track.title);
     const releaseDate = new Date(track.release_date || track.display_date);
     const labelName = track.label_name || track.user.username;
 
