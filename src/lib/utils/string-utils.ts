@@ -43,7 +43,8 @@ export function parseQuery(query: string) {
   });
 
   // RELEASE TYPE
-  const type = /remix|edit|vip|flip|bootleg/.test(queryTitle.toLowerCase()) ? 'Remix' : 'Original';
+  const typesRegex = /remix|edit|vip|flip|bootleg/;
+  const type = pascalCase(queryTitle.toLowerCase().match(typesRegex)?.[0] || 'Original');
 
   return {
     title: title,
