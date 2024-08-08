@@ -6,6 +6,6 @@ export const IndexController = (app: Elysia) =>
     return {
       from: referer,
       version: await Environment.VERSION(),
-      docs: '/docs',
+      docs: Environment.IS_DEV ? '/docs' : undefined,
     };
   });

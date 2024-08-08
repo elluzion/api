@@ -1,6 +1,7 @@
 import { $ } from 'bun';
 
 export default class Environment {
+  static IS_DEV = process.env.NODE_ENV !== 'production';
   static PORT = process.env['PORT']! || 3000;
   static VERSION = async () => {
     // Get and cache version

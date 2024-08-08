@@ -7,11 +7,10 @@ import Environment from './lib/environment';
 
 const { PORT } = Environment;
 
-export const api = new Elysia()
-  .use(SoundcloudController)
-  .use(IndexController)
-  .use(cors())
-  .use(
+export const api = new Elysia().use(SoundcloudController).use(IndexController).use(cors()).listen(PORT);
+
+if (Environment.IS_DEV) {
+  api.use(
     swagger({
       version: await Environment.VERSION(),
       path: '/docs',
@@ -26,8 +25,8 @@ export const api = new Elysia()
         theme: 'purple',
       },
     }),
-  )
-  .listen(PORT);
+  );
+}
 
 console.log(`Listening on port ${PORT}`);
 

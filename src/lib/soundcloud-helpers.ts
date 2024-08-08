@@ -93,7 +93,6 @@ export class SoundcloudUtils {
    * Checks if the provided URL is a valid Soundcloud URL.
    *
    * @param {string} url - The URL to validate.
-   * @param {boolean} resolve - Whether to resolve URLs from the Soundcloud app.
    * @return {string | undefined} The validated URL or undefined.
    */
   static async validateSoundcloudUrl(url: string) {
@@ -102,7 +101,7 @@ export class SoundcloudUtils {
     const MOBILE_URL = 'https://m.soundcloud.com/';
 
     if (url.startsWith(MOBILE_URL)) {
-      url = url.replace(MOBILE_URL, DEFAULT_URL);
+      return url.replace(MOBILE_URL, DEFAULT_URL);
     }
 
     if (url.startsWith(APP_URL)) {
