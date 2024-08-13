@@ -14,7 +14,7 @@ export function parseSongQuery(input: string) {
   const title = cleanWhitespace(parts.at(-1)!);
   const braces = input.match(REG_MATCH_BRACES);
 
-  var type = 'Original';
+  var type = 'Original'; // Is updated in parseBrackets
 
   // ARTISTS
   if (parts.length > 1) {
@@ -23,8 +23,6 @@ export function parseSongQuery(input: string) {
 
   // BRACES
   braces?.forEach((x) => parseBrackets(x));
-
-  // RELEASE TYPE
 
   return {
     artists: Array.from(new Set(artists)),
