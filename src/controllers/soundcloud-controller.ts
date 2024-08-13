@@ -31,7 +31,6 @@ export const SoundcloudController = (app: Elysia) =>
           const isValid = (await SoundcloudUtils.validateSoundcloudUrl(url)) ? true : false;
           if (!isValid) return error(400, 'Invalid URL');
 
-          /// TODO: VERCEL ERROR - CANNOT STORE FILES IN VERCEL
           const file = await downloadFromSoundcloud(url);
           return file || error(500, 'Error downloading song');
         },
