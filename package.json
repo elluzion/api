@@ -9,7 +9,7 @@
     "dc:up": "docker compose up -d --remove-orphans",
     "dc:down": "docker compose down",
     "dc:rm": "docker compose rm",
-    "dc:update": "git pull && docker compose build && docker compose up -d --remove-orphans"
+    "dc:update": "git reset --hard && git pull &&  && docker compose build && docker compose up -d --remove-orphans"
   },
   "dependencies": {
     "@elysiajs/cors": "1.1.0",
