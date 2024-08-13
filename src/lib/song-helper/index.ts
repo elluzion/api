@@ -1,5 +1,5 @@
 import { cleanWhitespace, pascalCase } from '../utils/strings';
-import { REG_FEAT_BRACE, REG_MATCH_BRACES, REG_SONG_RELEASE_TYPE } from './regex';
+import { REG_FEAT_BRACE, REG_MATCH_BRACKETS, REG_SONG_RELEASE_TYPE } from './regex';
 import { artistStringToList } from './utils';
 
 /**
@@ -12,7 +12,7 @@ export function parseSongQuery(input: string) {
 
   const artists: string[] = [];
   const title = cleanWhitespace(parts.at(-1)!);
-  const braces = input.match(REG_MATCH_BRACES);
+  const brackets = input.match(REG_MATCH_BRACKETS);
 
   var type = 'Original'; // Is updated in parseBrackets
 
@@ -21,8 +21,8 @@ export function parseSongQuery(input: string) {
     artists.push(...artistStringToList(parts[0]));
   }
 
-  // BRACES
-  braces?.forEach((x) => parseBrackets(x));
+  // BRACKETS
+  brackets?.forEach((x) => parseBrackets(x));
 
   return {
     artists: Array.from(new Set(artists)),

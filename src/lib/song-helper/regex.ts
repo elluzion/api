@@ -1,7 +1,7 @@
 /**
  * The regular expression used to match braces ([...], {...}, (...))
  */
-export const REG_MATCH_BRACES = /(?<=\[)[^\]]+(?=\])|(?<=\{)[^}]+(?=\})|(?<=\().+?(?=\))/gs;
+export const REG_MATCH_BRACKETS = /(?<=\[)[^\]]+(?=\])|(?<=\{)[^}]+(?=\})|(?<=\().+?(?=\))/gs;
 
 /**
  * The regular expression used to match song release types
