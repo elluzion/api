@@ -25,7 +25,12 @@ if (Environment.IS_DEV) {
           title: 'Tools API',
           version: version,
         },
+        tags: [
+          { name: 'General', description: 'General API endpoints' },
+          { name: 'Soundcloud', description: 'Soundcloud API endpoints' },
+        ],
       },
+      exclude: ['/docs', '/docs/json'],
       theme: 'dark',
       scalarConfig: {
         theme: 'purple',

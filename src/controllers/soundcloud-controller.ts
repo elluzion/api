@@ -19,7 +19,7 @@ export const SoundcloudController = (app: Elysia) =>
           return data || error(404, 'Song not found');
         },
         {
-          detail: { description: 'Returns a Song from a provided URL.' },
+          detail: { description: 'Returns a Song from a provided URL.', tags: ['Soundcloud'] },
           query: t.Object({ url: t.String() }),
           response: {
             200: Song,
@@ -45,6 +45,7 @@ export const SoundcloudController = (app: Elysia) =>
         {
           detail: {
             description: 'Returns a Soundcloud Song as an audio file.',
+            tags: ['Soundcloud'],
           },
           query: t.Object({ url: t.String() }),
           response: {
