@@ -8,6 +8,10 @@ export const SoundcloudController = (app: Elysia) =>
       .get(
         '/import',
         async ({ query: { url } }) => {
+          if (!url) {
+            return error(400, 'Missing URL');
+          }
+
           const isValid = (await SoundcloudUtils.validateSoundcloudUrl(url)) ? true : false;
           if (!isValid) return error(400, 'Invalid URL');
 
@@ -28,6 +32,10 @@ export const SoundcloudController = (app: Elysia) =>
       .get(
         '/download',
         async ({ query: { url } }) => {
+          if (!url) {
+            return error(400, 'Missing URL');
+          }
+
           const isValid = (await SoundcloudUtils.validateSoundcloudUrl(url)) ? true : false;
           if (!isValid) return error(400, 'Invalid URL');
 
