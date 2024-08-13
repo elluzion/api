@@ -7,17 +7,23 @@ import Environment from './lib/environment';
 
 const { PORT } = Environment;
 
-export const api = new Elysia().use(SoundcloudController).use(IndexController).use(cors()).listen(PORT);
+export const api = new Elysia().use(SoundcloudController).use(IndexController);
 
+// cors
+api.use(cors());
+
+// swagger docs
 if (Environment.IS_DEV) {
+  const version = await Environment.VERSION();
+
   api.use(
     swagger({
-      version: await Environment.VERSION(),
+      version: version,
       path: '/docs',
       documentation: {
         info: {
           title: 'Tools API',
-          version: await Environment.VERSION(),
+          version: version,
         },
       },
       theme: 'dark',
@@ -28,6 +34,7 @@ if (Environment.IS_DEV) {
   );
 }
 
+api.listen(PORT);
 console.log(`Listening on port ${PORT}`);
 
 export type Api = typeof api;
